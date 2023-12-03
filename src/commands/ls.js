@@ -42,7 +42,7 @@ const makeSortedReturn = (listing) => {
   const sortedListing = listing.sort();
 
   return {
-    output: OutputFactory.makeTextOutput(sortedListing.join('\n'))
+    output: OutputFactory.makeTextOutput(sortedListing.join(' '))
   };
 };
 
@@ -56,9 +56,9 @@ export const optDef = {
 };
 
 export default (state, commandOptions) => {
-  const {options, argv} = parseOptions(commandOptions, optDef);
+  const { options, argv } = parseOptions(commandOptions, optDef);
   const dirPath = resolveDirectoryToList(state.getEnvVariables(), argv);
-  const {err, list: dirList} = DirectoryOp.listDirectory(state.getFileSystem(), dirPath);
+  const { err, list: dirList } = DirectoryOp.listDirectory(state.getFileSystem(), dirPath);
 
   if (err) {
     return {
